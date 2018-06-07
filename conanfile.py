@@ -12,7 +12,11 @@ class NinjainstallerConan(ConanFile):
     license     = 'MIT'
     url         = 'https://github.com/kheaactua/conan-ninja-installer'
     description = 'Install Ninja from source'
-    settings    = 'os', 'compiler', 'build_type', 'arch_build'
+
+    settings = {
+        'os_build':   ['Windows', 'Linux', 'Macos'],
+        'arch_build': ['x86', 'x86_64', 'armv7'],
+    }
 
     def source(self):
         self.run('git clone https://github.com/ninja-build/ninja.git')
