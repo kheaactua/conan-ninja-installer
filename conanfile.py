@@ -30,6 +30,9 @@ class NinjainstallerConan(ConanFile):
         self.copy(pattern='ninja', dst='bin', src=os.path.join('ninja'))
 
     def package_info(self):
+        # Note: If this recipe is in the profile, this will cause CMake to
+        # always try to use Ninja, which can be problematic for some recipes
+        # (e.g. MRPT)
         self.env_info.CONAN_CMAKE_GENERATOR = 'Ninja'
 
         ninja_path = os.path.join(self.package_folder, 'bin')
