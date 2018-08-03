@@ -17,6 +17,10 @@ class NinjainstallerConan(ConanFile):
         'arch_build': ['x86', 'x86_64', 'armv7'],
     }
 
+    # Using the os_version here so 14.04x86 ninja doesn't clobber 11.10x86 ninja
+    options = {'os_version': 'ANY'}
+    default_options = 'os_version=' + str(tools.os_info.os_version)
+
     def source(self):
         self.run('git clone https://github.com/ninja-build/ninja.git')
         self.run('cd ninja && git checkout v%s'%self.version)
